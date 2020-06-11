@@ -36,9 +36,32 @@ const questions = [
         message: "Enter team member's email address"
     },
 ];
+
+const manager = {  
+    type: "input",
+    name: "number",
+    message: "Enter Manager's office number"
+};
+const engineer = {  
+    type: "input",
+    name: "github",
+    message: "Enter Engineer's GitHub username"
+};
+const intern = {  
+    type: "input",
+    name: "school",
+    message: "Enter school Intern attends"
+};
+
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
+function init() {
+    inquirer.prompt(questions)
+    .then( data => {
+        return fs.writeFile(outputPath, data)
+    })
+}
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
