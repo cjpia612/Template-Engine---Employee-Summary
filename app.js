@@ -39,7 +39,7 @@ const questions = [
 
 const manager = {  
     type: "input",
-    name: "number",
+    name: "officeNumber",
     message: "Enter Manager's office number"
 };
 const engineer = {  
@@ -53,12 +53,20 @@ const intern = {
     message: "Enter school Intern attends"
 };
 
+const teamMember = [];
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
-function init() {
+ function init() {
     inquirer.prompt(questions)
     .then( data => {
+        if(role === "Manager") {
+            const managerResponse = inquirer.prompt(manager);
+            const officeNumber = managerResponse.officeNumber;
+            const theManager = new Manager(name, id, email, officeNumber);
+
+            teamMember.push(theManager);
+        }
         return fs.writeFile(outputPath, data)
     })
 }
