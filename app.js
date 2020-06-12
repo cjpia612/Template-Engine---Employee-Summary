@@ -85,7 +85,9 @@ async function init() {
     if(trueFalse === true) {
         init();
     }else {
-        fs.writeFile(outputPath, teamMember, function (err){
+// Render function passing teamMember array to "render" the answers
+        const allMembers = render(teamMember);
+        fs.writeFile(outputPath, allMembers, function (err){
             if (err) {
                 throw err;
             }
