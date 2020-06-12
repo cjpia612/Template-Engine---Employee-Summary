@@ -53,6 +53,11 @@ const intern = {
     message: "Enter school Intern attends"
 };
 
+const addEmployee = {
+    type: "confirm",
+    name: "newEmployee",
+    message: "Add another employee if desired"
+}
 const teamMember = [];
 
 async function init() {
@@ -65,9 +70,21 @@ async function init() {
 
         teamMember.push(theManager);
     } else if(role === "Engineer") {
-        
-    }
-    // return fs.writeFile(outputPath, answers);
-}
+        const engineerResponse = await inquirer.prompt(engineer);
+        const github = engineerResponse.github;
+        const theEngineer = new Engineer(name, id, email, github);
+
+        teamMember.push(theEngineer);
+    }else if(role === "Intern") {
+        const internResponse = await inquirer.prompt(intern);
+        const school = internResponse.school;
+        const theIntern = new Intern(name, id, email, school);
+
+        teamMember.push(theIntern);
+    } 
+
+
+
+};
 
 init();
